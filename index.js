@@ -24,6 +24,7 @@ class Validator{
             }, (error) => {
                 if (error.response.status === 422) {
                     Errors.fill(error.response.data.errors)
+                    events.$emit('laravelValidationError', Errors)
                 }
 
                 return Promise.reject(error);
